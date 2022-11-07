@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react'
+import { VStack, Box, Spinner } from '@chakra-ui/react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import TodoList from './components/TodoList'
+import AddTodoForm from './components/AddTodoForm'
+import Heading from './components/Heading'
+import { add, load, remove } from './actions'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const dispatch = useDispatch()
+  const todos = useSelector((state) => state.items)
+  const loading = useSelector((state) => state.loading)
 
-export default App;
+  useEffect(() => {
+    dispatch(load())
+  }, [dispatch])
+
+  const handleDeleteTodo = (id) => {
+    dispatch(remove(id))
+  }
+
+  const handleAddTodo = (todo) => {
+    dispatch(add(todo))
+  }
+
+  return (
+    <VStack p="4">
+      <Box>
+        <Heading />
+      </Box>
+      {loading ? (
+        <Spinner pos="relative" top="18" />
+      ) : (
+        <>
+          <TodoList todos={todos} onDeleteTodo={handleDeleteTodo} />
+          <AddTodoForm onAddTodo={handleAddTodo} />
+        </>
+      )}
+    </VStack>
+  )
+}
+export default App
