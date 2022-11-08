@@ -26,9 +26,7 @@ function App() {
 
   return (
     <VStack p="4">
-      <Box>
-        <Heading />
-      </Box>
+      <Heading />
       {loading ? (
         <Spinner pos="relative" top="18" />
       ) : (
