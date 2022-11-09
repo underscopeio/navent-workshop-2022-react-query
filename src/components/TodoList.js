@@ -31,7 +31,7 @@ const TodoList = ({ todos, onDeleteTodo }) => {
             icon={<FaTrash />}
             isRound="true"
             onClick={() => onDeleteTodo(todo.id)}
-            visibility={todo.pending ? 'hidden' : undefined}
+            visibility={todo.pending || !onDeleteTodo ? 'hidden' : undefined}
           />
         </HStack>
       ))}

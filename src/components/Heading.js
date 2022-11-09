@@ -1,9 +1,9 @@
 import { Heading as ChakraHeading } from '@chakra-ui/react'
 
-const Heading = () => {
+const Heading = (props) => {
   return (
     <ChakraHeading
-      mb="8"
+      {...props}
       fontWeight="extrabold"
       size="2xl"
       bgGradient="linear(to-r, cyan.400, purple.400, pink.400)"

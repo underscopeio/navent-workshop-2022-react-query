@@ -33,7 +33,13 @@ const AddTodoForm = ({ onAddTodo }) => {
   return (
     <form onSubmit={handleSubmit}>
       <HStack mt="8">
-        <Input variant="filled" placeholder="Input Task" value={content} onChange={(e) => setContent(e.target.value)} />
+        <Input
+          variant="filled"
+          placeholder="Input Task"
+          value={content}
+          disabled={!onAddTodo}
+          onChange={(e) => setContent(e.target.value)}
+        />
         <Button type="submit" colorScheme="cyan" px="8">
           Add Todo
         </Button>

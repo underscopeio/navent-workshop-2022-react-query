@@ -13,8 +13,6 @@ const store = createStore(
   compose(applyMiddleware(thunk), window.devToolsExtension ? window.devToolsExtension() : (f) => f)
 )
 
-console.log(store.getState)
-
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(

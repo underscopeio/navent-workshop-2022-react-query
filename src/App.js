@@ -1,41 +1,17 @@
-import { useEffect } from 'react'
-import { VStack, Box, Spinner } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Intro from './views/Intro'
+import Todos from './views/Todos'
 
-import TodoList from './components/TodoList'
-import AddTodoForm from './components/AddTodoForm'
-import Heading from './components/Heading'
-import { add, load, remove } from './actions'
+import './App.css'
 
 function App() {
-  const dispatch = useDispatch()
-  const todos = useSelector((state) => state.items)
-  const loading = useSelector((state) => state.loading)
-
-  useEffect(() => {
-    dispatch(load())
-  }, [dispatch])
-
-  const handleDeleteTodo = (id) => {
-    dispatch(remove(id))
-  }
-
-  const handleAddTodo = (todo) => {
-    dispatch(add(todo))
-  }
-
   return (
-    <VStack p="4">
-      <Heading />
-      {loading ? (
-        <Spinner pos="relative" top="18" />
-      ) : (
-        <>
-          <TodoList todos={todos} onDeleteTodo={handleDeleteTodo} />
-          <AddTodoForm onAddTodo={handleAddTodo} />
-        </>
-      )}
-    </VStack>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<Intro />} />
+        <Route exact path="/todos" element={<Todos />} />
+      </Routes>
+    </Router>
   )
 }
 export default App
