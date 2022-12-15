@@ -7,6 +7,7 @@ import Heading from '../components/Heading'
 import { load } from '../actions'
 
 function Intro() {
+  console.log('Views.Intro')
   const dispatch = useDispatch()
   const todos = useSelector((state) => state.items)
 
@@ -15,7 +16,7 @@ function Intro() {
   }, [dispatch])
 
   return (
-    <VStack p="4" h="100%" alignItems="center" justifyContent="center">
+    <VStack p="4" h="100%" justifyContent="center">
       <Heading />
       <Text pb="10">You currently have {todos.length} undone tasks</Text>
       <Button>
