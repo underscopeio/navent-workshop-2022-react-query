@@ -11,7 +11,9 @@ function Intro() {
   return (
     <VStack p="4" h="100%" justifyContent="center">
       <Heading />
-      <Text pb="10">You currently have {isLoading ? <Spinner size="xs" /> : todos.length} undone tasks</Text>
+      <Text pb="10">
+        You currently have <b>{isLoading ? <Spinner size="xs" /> : todos.length}</b> undone tasks
+      </Text>
       <Button>
         <Link to="/todos">Go to the List</Link>
       </Button>

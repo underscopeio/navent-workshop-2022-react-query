@@ -6,13 +6,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import App from './App'
 
-const queryClient = new QueryClient({
-  // defaultOptions: {
-  //   queries: {
-  //     staleTime: 0,
-  //   },
-  // },
-})
+const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
