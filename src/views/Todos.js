@@ -11,6 +11,7 @@ function Todos() {
   const dispatch = useDispatch()
   const todos = useSelector((state) => state.items)
   const loading = useSelector((state) => state.loading)
+  const adding = useSelector((state) => state.adding)
 
   useEffect(() => {
     dispatch(load())
@@ -32,7 +33,7 @@ function Todos() {
       ) : (
         <>
           <TodoList todos={todos} onDeleteTodo={handleDeleteTodo} />
-          <AddTodoForm onAddTodo={handleAddTodo} />
+          <AddTodoForm onAddTodo={handleAddTodo} isLoading={adding} />
         </>
       )}
     </VStack>

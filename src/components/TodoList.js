@@ -1,8 +1,16 @@
 import React from 'react'
 import { VStack, StackDivider, HStack, Text, Spacer, IconButton, Badge, Spinner } from '@chakra-ui/react'
 import { FaTrash } from 'react-icons/fa'
+import { useState } from 'react'
 
 const TodoList = ({ todos, onDeleteTodo }) => {
+  const [removedId, setRemovedId] = useState()
+
+  const handleDeleteTodo = (id) => {
+    setRemovedId(id)
+    onDeleteTodo(id)
+  }
+
   if (!todos.length) {
     return (
       <Badge colorScheme="cyan" p="4" borderRadius="lg">
@@ -26,12 +34,10 @@ const TodoList = ({ todos, onDeleteTodo }) => {
         <HStack key={todo.id} pos="relative">
           <Text>{todo.body}</Text>
           <Spacer />
-          {todo.pending ? <Spinner pos="absolute" right="2" /> : undefined}
           <IconButton
-            icon={<FaTrash />}
+            icon={removedId === todo.id ? <Spinner /> : <FaTrash />}
             isRound="true"
-            onClick={() => onDeleteTodo(todo.id)}
-            visibility={todo.pending || !onDeleteTodo ? 'hidden' : undefined}
+            onClick={() => handleDeleteTodo(todo.id)}
           />
         </HStack>
       ))}

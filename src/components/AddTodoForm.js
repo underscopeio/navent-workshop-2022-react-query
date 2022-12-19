@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { HStack, Input, Button, useToast } from '@chakra-ui/react'
 import { nanoid } from 'nanoid'
 
-const AddTodoForm = ({ onAddTodo }) => {
+const AddTodoForm = ({ onAddTodo, isLoading }) => {
   const [content, setContent] = useState('')
   const toast = useToast()
 
@@ -35,12 +35,12 @@ const AddTodoForm = ({ onAddTodo }) => {
       <HStack mt="8">
         <Input
           variant="filled"
-          placeholder="Input Task"
+          placeholder="Enter Task"
           value={content}
-          disabled={!onAddTodo}
+          disabled={!onAddTodo || isLoading}
           onChange={(e) => setContent(e.target.value)}
         />
-        <Button type="submit" colorScheme="cyan" px="8">
+        <Button isLoading={isLoading} type="submit" colorScheme="cyan" px="8">
           Add Todo
         </Button>
       </HStack>
