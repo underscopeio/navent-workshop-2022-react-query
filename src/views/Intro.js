@@ -7,7 +7,6 @@ import Heading from '../components/Heading'
 import { load } from '../actions'
 
 function Intro() {
-  console.log('Views.Intro')
   const dispatch = useDispatch()
   const todos = useSelector((state) => state.items)
 
