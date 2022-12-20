@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { HStack, Input, Button, useToast } from '@chakra-ui/react'
 import { nanoid } from 'nanoid'
 
-const AddTodoForm = ({ onAddTodo, isLoading }) => {
+const TodoForm = ({ onAddTodo, isLoading }) => {
   const [content, setContent] = useState('')
   const toast = useToast()
 
@@ -47,4 +47,4 @@ const AddTodoForm = ({ onAddTodo, isLoading }) => {
     </form>
   )
 }
-export default AddTodoForm
+export default TodoForm

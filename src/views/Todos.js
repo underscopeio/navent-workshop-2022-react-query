@@ -3,15 +3,15 @@ import { VStack, Spinner } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import TodoList from '../components/TodoList'
-import AddTodoForm from '../components/AddTodoForm'
+import TodoForm from '../components/TodoForm'
 import Heading from '../components/Heading'
 import { add, load, remove } from '../actions'
 
 function Todos() {
   const dispatch = useDispatch()
   const todos = useSelector((state) => state.items)
-  const loading = useSelector((state) => state.loading)
-  const adding = useSelector((state) => state.adding)
+  const isLoading = useSelector((state) => state.loading)
+  const isAdding = useSelector((state) => state.adding)
 
   useEffect(() => {
     dispatch(load())
@@ -28,12 +28,12 @@ function Todos() {
   return (
     <VStack p="4">
       <Heading mb={8} />
-      {loading ? (
+      {isLoading ? (
         <Spinner pos="relative" top="18" />
       ) : (
         <>
           <TodoList todos={todos} onDeleteTodo={handleDeleteTodo} />
-          <AddTodoForm onAddTodo={handleAddTodo} isLoading={adding} />
+          <TodoForm onAddTodo={handleAddTodo} isLoading={isAdding} />
         </>
       )}
     </VStack>
