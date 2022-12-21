@@ -35,7 +35,7 @@ const TodoForm = ({ onAddTodo, isLoading }) => {
       <HStack mt="8">
         <Input
           variant="filled"
-          placeholder="Input Task"
+          placeholder="Enter Task"
           value={content}
           disabled={!onAddTodo || isLoading}
           onChange={(e) => setContent(e.target.value)}
