@@ -1,6 +1,6 @@
 # Simplificando el manejo de estado con React Query
 
-** Navent | Diciembre 2022 **
+**Navent | Diciembre 2022**
 
 Repo usado en el workshop para mostrar como pasar de Redux a React Query y los beneficios que nos trae.El mismo fue construirlo usand create-react-app para webapp y json-server para la API REST.
 
