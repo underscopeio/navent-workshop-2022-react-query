@@ -1,19 +1,12 @@
-import { useEffect } from 'react'
 import { VStack, Button, Text, Spinner } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 
+import * as api from '../api'
 import Heading from '../components/Heading'
-import { load } from '../actions'
 
 function Intro() {
-  const dispatch = useDispatch()
-  const todos = useSelector((state) => state.items)
-  const isLoading = useSelector((state) => state.loading)
-
-  useEffect(() => {
-    dispatch(load())
-  }, [dispatch])
+  const { data: todos, isLoading } = useQuery({ queryKey: ['todos'], queryFn: () => api.getTodos() })
 
   return (
     <VStack p="4" h="100%" justifyContent="center">

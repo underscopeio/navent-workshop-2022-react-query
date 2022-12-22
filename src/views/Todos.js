@@ -1,28 +1,38 @@
-import { useEffect } from 'react'
 import { VStack, Spinner } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 
+import * as api from '../api'
 import TodoList from '../components/TodoList'
 import TodoForm from '../components/TodoForm'
 import Heading from '../components/Heading'
-import { add, load, remove } from '../actions'
 
 function Todos() {
-  const dispatch = useDispatch()
-  const todos = useSelector((state) => state.items)
-  const isLoading = useSelector((state) => state.loading)
-  const isAdding = useSelector((state) => state.adding)
+  const queryClient = useQueryClient()
 
-  useEffect(() => {
-    dispatch(load())
-  }, [dispatch])
+  const { data: todos, isLoading } = useQuery({ queryKey: ['todos'], queryFn: () => api.getTodos() })
+
+  const add = useMutation({
+    mutationFn: (todo) => api.addTodo(todo),
+
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] })
+    },
+  })
+
+  const remove = useMutation({
+    mutationFn: (id) => api.removeTodo(id),
+
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] })
+    },
+  })
 
   const handleDeleteTodo = (id) => {
-    dispatch(remove(id))
+    remove.mutate(id)
   }
 
   const handleAddTodo = (todo) => {
-    dispatch(add(todo))
+    add.mutate(todo)
   }
 
   return (
@@ -33,7 +43,7 @@ function Todos() {
       ) : (
         <>
           <TodoList todos={todos} onDeleteTodo={handleDeleteTodo} />
-          <TodoForm onAddTodo={handleAddTodo} isLoading={isAdding} />
+          <TodoForm onAddTodo={handleAddTodo} isLoading={isLoading || add.isLoading} />
         </>
       )}
     </VStack>
