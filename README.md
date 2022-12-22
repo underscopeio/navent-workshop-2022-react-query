@@ -2,9 +2,11 @@
 
 **Navent | Diciembre 2022**
 
-Repo usado en el workshop para mostrar como pasar de Redux a React Query y los beneficios que nos trae.El mismo fue construirlo usand create-react-app para webapp y json-server para la API REST.
+Repo usado en el workshop para mostrar como pasar de Redux a React Query y los beneficios que nos trae. El mismo fue construirlo usand create-react-app para webapp y json-server para la API REST.
 
 En el branch [master](https://github.com/underscopeio/navent-workshop-2022-react-query) se puede ver la app hecha con Redux y en el branch [feat/react-query](https://github.com/underscopeio/navent-workshop-2022-react-query/tree/feat/react-query) se puede ver la misma app hecha con React Query.
+
+Acá dejamos el link a la [presentación](https://github.com/underscopeio/navent-workshop-2022-react-query/blob/master/presentation.pdf)
 
 ## Como correr el sitio
 
